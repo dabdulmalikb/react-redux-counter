@@ -1,24 +1,29 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { increment, decrement } from "./actions";
 
+import { MdAddCircleOutline, MdRemoveCircleOutline } from "react-icons/md";
+
+//https://www.youtube.com/watch?v=CVpUuw9XSjY
 function App() {
+  const counter = useSelector((state) => state.counter);
+  const dispatch = useDispatch();
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div style={{ paddingTop: "50px", textAlign: "center" }}>
+      <MdAddCircleOutline
+        onClick={() => dispatch(increment())}
+        color="blue"
+        size="3rem"
+      />
+      <MdRemoveCircleOutline
+        onClick={() => dispatch(decrement())}
+        color="red"
+        size="3rem"
+      />
+      <div></div>
+      <div>
+        <h1>Counter: {counter}</h1>
+      </div>
     </div>
   );
 }
